@@ -112,3 +112,45 @@ Wed Nov 09 2022 10:52:26 GMT-0500 (Eastern Standard Time)
 
 Script "D:\\Documents\\Masters\\3rd Semester\\Cloud Computing & Big Data - COMS6998\\Homework\\Homework 2\\frontend\\export-script.bat" couldn't be run
 
+----------
+
+Wed Nov 09 2022 10:53:58 GMT-0500 (Eastern Standard Time)
+
+Script cd "D:\\Documents\\Masters\\3rd Semester\\Cloud Computing & Big Data - COMS6998\\Homework\\Homework 2\\frontend"; .\\export-script.bat couldn't be run
+
+----------
+
+Wed Nov 09 2022 10:55:16 GMT-0500 (Eastern Standard Time)
+
+'D:\Documents\Masters\3rd' is not recognized as an internal or external command,
+operable program or batch file.
+
+
+----------
+
+Wed Nov 09 2022 10:55:16 GMT-0500 (Eastern Standard Time)
+
+'Big' is not recognized as an internal or external command,
+operable program or batch file.
+
+
+----------
+
+Wed Nov 09 2022 10:55:16 GMT-0500 (Eastern Standard Time)
+
+'Big' is not recognized as an internal or external command,
+operable program or batch file.
+
+
+----------
+
+Wed Nov 09 2022 10:56:08 GMT-0500 (Eastern Standard Time)
+
+Script cd "D:\\Documents\\Masters\\3rd Semester\\Cloud Computing & Big Data - COMS6998\\Homework\\Homework 2\\frontend"; .\\export-script.bat couldn't be run
+
+----------
+
+Wed Nov 09 2022 10:56:53 GMT-0500 (Eastern Standard Time)
+
+Script D:\\Documents\\Masters\\3rd Semester\\"Cloud Computing & Big Data - COMS6998"\\Homework\\"Homework 2"\\frontend\\export-script.bat couldn't be run
+
