@@ -33,6 +33,7 @@ function displayContainers() {
 document.addEventListener("load", displayContainers);
 
 function addImages(results, query) {
+    deleteAllPhotos();
     for (let result of results) {
         url = result.url
         labels = result.labels
@@ -51,6 +52,11 @@ function addImages(results, query) {
     console.log(photoContainer.children)
     displayContainers();
     updateBaguette();
+}
+
+function deleteAllPhotos() {
+    photoContainer.innerHTML = "";
+    displayContainers();
 }
 
 function deleteListItem(elem) {
