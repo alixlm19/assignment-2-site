@@ -48,6 +48,7 @@ function addImages(results, query) {
     }
 
     searchResults.innerText = `Search results for: ${query}`
+    console.log(photoContainer.children)
     displayContainers();
     updateBaguette();
 }
