@@ -1,0 +1,14 @@
+.fit-cover {
+  object-fit: cover;
+}
+
+#footer-div {
+  background-image: url("../../assets/img/Blob.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /*background-size: cover;*/
+  /*height: 100%;*/
+  /*margin: 0;*/
+  /*padding: 0;*/
+}
+
