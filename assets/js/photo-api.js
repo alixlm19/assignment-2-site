@@ -61,36 +61,7 @@ function putImages() {
         reader.name = file.name
         reader.filetype = file.type
         reader.readAsDataURL(file);
-    //     params = {
-    //         "folder" : "assignment2.b2",
-    //         "object" : Date.now() + file.name,
-    //         "Labels" : customLabels.join(','),
-    //     };
-
-    //     body = {
-    //         file
-    //     }
-
-    //     additionalParams = {
-    //         "headers": {
-    //             "Content-Type" : file.type
-    //         }
-    //     };
-
-    //     // response = apiClient.uploadPut(params, body, additionalParams)
-    //     response = apiClient.uploadFolderObjectPut(params, body, additionalParams)
-    //         .then(function(result) {
-    //             console.log("image uploaded successfully");
-                
-    //             // Delete all label pills
-    //             deleteAllListItems();
-                
-    //             console.error(result);
-                
-    //         }).catch(function(result){
-    //             console.log("failure");
-    //             console.error(result);
-    //         });
+        
     }
 
 }
