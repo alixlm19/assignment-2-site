@@ -1,4 +1,5 @@
 let labelInput = document.getElementById("labelInput");
+let searchInputHE = document.getElementById("search-input");
 let labelContainer = document.getElementById("labelContainer");
 let photoContainer = document.getElementById("photo-container");
 let photoMainContainer = document.getElementById("photo-main-container");
@@ -10,43 +11,23 @@ let audio = document.getElementById("audio");
 let labels = new Set();
 
 
-let transcribeservice = new AWS.TranscribeService({
-    region : "us-east-1"
+
+window.SpeechRecognition = window.SpeechRecognition
+                        || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+recognition.interimResults = true;
+
+recognition.addEventListener('result', e => {
+    const transcript = Array.from(e.results)
+        .map(result => result[0])
+        .map(result => result.transcript)
+        .join('')
+
+    searchInputHE.value = transcript;
+    console.log(transcript);
+    
 });
 
-const transcribeHost = "transcribestreaming.us-east-1.amazonaws.com"
-
-function tts(blob) {
-
-    // var formData = new FormData()
-    // data = {
-    //     "AudioStream": { 
-    //         "AudioEvent": { 
-    //             "AudioChunk": blob
-    //         }
-    //     }
-    // }
-
-    // formData.append('source', blob)
-    // $.ajax({
-    //     url: transcribeHost,
-    //     type:"POST",
-    //     beforeSend: function(xhr){
-    //               xhr.setRequestHeader("x-amzn-transcribe-language-code", "en-US");
-    //               xhr.setRequestHeader("x-amzn-transcribe-sample-rate", "10000");
-    //               xhr.setRequestHeader("x-amzn-transcribe-media-encoding", "ogg-opus");
-    //               xhr.setRequestHeader("Content-Type", "application/json");
-    //     },
-    //     data:{
-    //         "AudioStream": { 
-    //            "AudioEvent": { 
-    //               "AudioChunk": blob
-    //            }
-    //         }
-    //     },
-    //     dataType:"json"
-    //   })  
-}
 
 labelInput.addEventListener("keypress", function(event){
     if (event.key === "Enter") {
@@ -63,39 +44,20 @@ labelInput.addEventListener("keypress", function(event){
 
 btnStart.addEventListener('click', async () => {
     if (btnStart.style.display !== "none"){
-        let stream = await navigator.mediaDevices.getUserMedia({audio: true, video: false});
-        let mediaRecorder = new MediaRecorder(stream);
-        mediaRecorder.start();
-        let chunks = [];
+        
         btnStart.style.display = "none";
         btnStop.style.display = "flex";
-    
-        mediaRecorder.ondataavailable = (e)=>{
-            chunks.push(e.data);
-            console.log("recording"); 
-        }
-        //function to catch error
-        mediaRecorder.onerror = (e)=>{
-            alert(e.error);
-        }
-    
-        mediaRecorder.onstop = (e)=>{
-            let blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
-            chunks = [];
-            console.log(blob)
-            tts(blob)
-            
-
-            btnStart.style.display = "flex";
-            btnStop.style.display = "none";
-            console.log("recording stopped");
-
-        }
+        recognition.start();
+        
         
         btnStop.addEventListener('click',()=>{
             if(btnStop.style.display !== "none") {
-                mediaRecorder.stop();
-                mediaRecorder.stopStream()
+                
+                btnStart.style.display = "flex";
+                btnStop.style.display = "none";
+                recognition.stop();
+                console.log("recording stopped");
+                getImages();
             }
         })
     }
