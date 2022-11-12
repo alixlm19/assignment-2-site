@@ -4,7 +4,12 @@ let photoContainer = document.getElementById("photo-container");
 let photoMainContainer = document.getElementById("photo-main-container");
 let noPhotoContainer = document.getElementById("no-photo-container");
 let searchResults = document.getElementById("search-results");
+let btnStart = document.getElementById("btnStart");
+let btnStop = document.getElementById("btnStop");
+let audio = document.getElementById("audio");
 let labels = new Set();
+
+var transcribeservice = new AWS.TranscribeService();
 
 labelInput.addEventListener("keypress", function(event){
     if (event.key === "Enter") {
@@ -19,6 +24,45 @@ labelInput.addEventListener("keypress", function(event){
     }
 });
 
+btnStart.addEventListener('click', async () => {
+    if (btnStart.style.display !== "none"){
+        let stream = await navigator.mediaDevices.getUserMedia({audio: true, video: false});
+        let mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder.start();
+        let chunks = [];
+        btnStart.style.display = "none";
+        btnStop.style.display = "flex";
+    
+        mediaRecorder.ondataavailable = (e)=>{
+            chunks.push(e.data);
+            console.log("recording"); 
+        }
+        //function to catch error
+        mediaRecorder.onerror = (e)=>{
+            alert(e.error);
+        }
+    
+        mediaRecorder.onstop = (e)=>{
+            let blob = new Blob(chunks);
+            
+            
+
+
+            btnStart.style.display = "flex";
+            btnStop.style.display = "none";
+            console.log("recording stopped");
+
+        }
+        
+        btnStop.addEventListener('click',()=>{
+            if(btnStop.style.display !== "none") {
+                mediaRecorder.stop();
+                mediaRecorder.stopStream()
+            }
+        })
+    }
+})
+
 
 function displayContainers() {
     if(photoContainer.children.length == 0) {
@@ -30,7 +74,9 @@ function displayContainers() {
     }
 }
 
-document.addEventListener("load", displayContainers);
+document.addEventListener("load", function() {
+    displayContainers();
+});
 
 function addImages(results, query) {
     deleteAllPhotos();

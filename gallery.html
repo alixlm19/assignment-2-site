@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="assets/css/Animated-Type-Heading.css">
     <link rel="stylesheet" href="assets/css/Drag--Drop-Upload-Form.css">
     <link rel="stylesheet" href="assets/css/Growing-Search-Bar-Animated-Text-Input.css">
@@ -35,7 +36,7 @@
                         </form>
                     </li>
                     <li class="nav-item">
-                        <div class="container d-xl-flex justify-content-xl-center" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="right" style="text-align: center;display: flex;padding-top: 12px;height: 64px;" title="Use microphone"><a class="search_icon" href="#" style="color: rgb(0,0,0);background: #324561;"><i class="fas fa-microphone-alt" style="color: rgb(255,255,255);font-size: 20px;"></i></a></div>
+                        <div class="container d-xl-flex justify-content-xl-center" style="text-align: center;display: flex;padding-top: 12px;height: 64px;"><a data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="right" data-bss-hover-animate="swing" id="btnStart" class="search_icon" href="#" style="color: rgb(0,0,0);background: #324561;display:flex;" title="Start recording"><i class="fas fa-microphone-alt" style="color: rgb(255,255,255);font-size: 20px;"></i></a><a data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="right" class="pulse animated infinite search_icon" id="btnStop" href="#" style="color: rgb(0,0,0);background: #fc473c;display:none;" title="Stop recording"><i class="fas fa-stop" style="color: rgb(255,255,255);font-size: 15px;"></i></a><audio id="audio" controls="" style="display: none;"></audio></div>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="#"></a></li>
                     <li class="nav-item"></li>
@@ -126,6 +127,7 @@
     <script src="assets/js/lib/apiGatewayCore/simpleHttpClient.js"></script>
     <script src="assets/js/lib/apiGatewayCore/utils.js"></script>
     <script src="assets/js/apigClient.js"></script>
+    <script src="assets/js/aws-sdk-2.1253.0.min.js"></script>
     <script src="assets/js/handleEvents.js"></script>
     <script src="assets/js/photo-api.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
