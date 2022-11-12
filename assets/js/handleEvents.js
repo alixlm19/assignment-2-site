@@ -9,7 +9,44 @@ let btnStop = document.getElementById("btnStop");
 let audio = document.getElementById("audio");
 let labels = new Set();
 
-var transcribeservice = new AWS.TranscribeService();
+
+let transcribeservice = new AWS.TranscribeService({
+    region : "us-east-1"
+});
+
+const transcribeHost = "transcribestreaming.us-east-1.amazonaws.com"
+
+function tts(blob) {
+
+    // var formData = new FormData()
+    // data = {
+    //     "AudioStream": { 
+    //         "AudioEvent": { 
+    //             "AudioChunk": blob
+    //         }
+    //     }
+    // }
+
+    // formData.append('source', blob)
+    // $.ajax({
+    //     url: transcribeHost,
+    //     type:"POST",
+    //     beforeSend: function(xhr){
+    //               xhr.setRequestHeader("x-amzn-transcribe-language-code", "en-US");
+    //               xhr.setRequestHeader("x-amzn-transcribe-sample-rate", "10000");
+    //               xhr.setRequestHeader("x-amzn-transcribe-media-encoding", "ogg-opus");
+    //               xhr.setRequestHeader("Content-Type", "application/json");
+    //     },
+    //     data:{
+    //         "AudioStream": { 
+    //            "AudioEvent": { 
+    //               "AudioChunk": blob
+    //            }
+    //         }
+    //     },
+    //     dataType:"json"
+    //   })  
+}
 
 labelInput.addEventListener("keypress", function(event){
     if (event.key === "Enter") {
@@ -43,10 +80,11 @@ btnStart.addEventListener('click', async () => {
         }
     
         mediaRecorder.onstop = (e)=>{
-            let blob = new Blob(chunks);
+            let blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+            chunks = [];
+            console.log(blob)
+            tts(blob)
             
-            
-
 
             btnStart.style.display = "flex";
             btnStop.style.display = "none";
