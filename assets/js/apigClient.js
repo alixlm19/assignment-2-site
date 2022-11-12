@@ -119,6 +119,24 @@ apigClientFactory.newClient = function (config) {
     };
     
     
+    apigClient.transcribePost = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var transcribePostRequest = {
+            verb: 'post'.toUpperCase(),
+            path: pathComponent + uritemplate('/transcribe').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(transcribePostRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.uploadPut = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
