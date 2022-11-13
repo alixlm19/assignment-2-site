@@ -1,5 +1,7 @@
 let searchInput = document.getElementById("search-input");
-let apiClient = apigClientFactory.newClient();
+let apiClient = apigClientFactory.newClient({
+    "apiKey" : "ta5mXXq5iK4ufGKGD0uKs5TG1BdjvIyR8FzH51Jp"
+});
 let reader = new FileReader();
 let enc_file;
 
